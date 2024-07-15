@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "nlw-travel-agent"
+version = "0.1.0"
+description = "Projeto desenvolvido no NLW NEW JOURNEY da Rocketseat 🚀"
+authors = ["Antonio Henrique Machado <antoniohenriquemachado08@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+openai = "^1.35.13"
+langchain = "^0.2.7"
+langchain-community = "^0.2.7"
+langchain-openai = "^0.1.16"
+duckduckgo-search = "^6.1.12"
+wikipedia = "^1.4.0"
+langchainhub = "^0.1.20"
+chromadb = "^0.5.4"
+
+
+[tool.poetry.group.dev.dependencies]
+ignr = "^2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
