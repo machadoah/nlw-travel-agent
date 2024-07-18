@@ -18,7 +18,7 @@ from tools import prompts
 
 os.environ.get("OPENAI_API_KEY")
 
-llm = ChatOpenAI(model="gpt-3.5-turbo")
+llm = ChatOpenAI(model="gpt-4o-mini")
 
 
 def research_agent(query, llm):
@@ -45,9 +45,11 @@ def load_data():
     )
 
     docs = loader.load()
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=1000, chunk_overlap=200)
     splits = text_splitter.split_documents(docs)
-    vectorstore = Chroma.from_documents(documents=splits, embedding=OpenAIEmbeddings())
+    vectorstore = Chroma.from_documents(
+        documents=splits, embedding=OpenAIEmbeddings())
     retriever = vectorstore.as_retriever()
     return retriever
 
@@ -85,7 +87,10 @@ def get_response(query, llm):
     return response
 
 
-def lambda_handler(event, context):
-    query = event["question"]
-    response = get_response(query, llm).content
-    return {"body": response, "status": 200}
+def main(query):
+    return get_response(query, llm).content
+
+
+if __name__ == "__main__":
+    query = input("Enter your query: ")
+    print(main(query))
